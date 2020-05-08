@@ -3,17 +3,54 @@
 <head>
 	<meta charset="utf-8">
 	<script>
-		// TODO: create a handler
-    window.addEventListener("load", function(){
-        // TODO: register the handler
-    });
+		const setSearchEngine = (input) => {
+			let actions = {
+				google: "https://www.google.com/",
+				bing: "https://www.bing.com/",
+				duckDuckGo: "https://www.duckduckgo.com/",
+				ask: "https://www.ask.com/",
+			};
+			
+			let selectedDomNode = document.querySelector(
+				"input[name=engine]:checked"
+			);
+			
+			let formElement = document.getElementById("searchForm");
+			formElement.setAttribute("action", actions[selectedDomNode.value]);
+		};
+			
+		window.addEventListener("load", function(){
+			window.addEventListener("submit", setSearchEngine);
+		});
 	</script>
 </head>
 
 <body>
-
 	<form id="searchForm">
-    <!-- TODO: add form elements -->
+		<input name="q">
+		<div class="browserOptions">
+			<input type="radio" name="engine" value="google" id="google">
+			<label>Google</label>
+		</div>
+		<div class="browserOptions">
+			<input type="radio" name="engine" value="duckDuckGo" id="duckDuckGo">
+			<label>DuckDuckGo</label>
+		</div>
+		<div class="browserOptions">
+			<input type="radio" name="engine" value="bing" id="bing">
+			<label>Bing</label>
+		</div>
+		<div class="browserOptions">
+			<input type="radio" name="engine" value="ask" id="ask">
+			<label>Ask</label>
+		</div>
+		<button type="Submit" value="GO!">GO!</button>
 	</form>
-
 </body>
+
+<!-- HTTP request protocols
+	Post - sending info/giving something to something else
+	Get - requesting information instead of sending it
+	Put - sending info/similar to post
+	
+-->
